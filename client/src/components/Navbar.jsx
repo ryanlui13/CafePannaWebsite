@@ -1,39 +1,44 @@
 import React from "react";
 import { useState } from "react";
-import logo from '../assets/images/CafePannaImage.png';
+import logo from "../assets/images/CafePannaImage.png";
 
-function NavBar ({setPage}) {
-    //hamburger menu
-    const [isOpen, setIsOpen] = useState(false) //hamburger menu is not open by default
+function NavBar({ setPage }) {
+    const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    //everything else in nav + opening hamburger menu
     return (
-        <div>
-            <nav className="nav-logo">
-                <img src={logo} alt="Cafe Panna Logo" />
-            </nav>
-            <nav className="navbar">
-                <navbar className="navbar-links">
-                    <button onClick={() => setPage('home')}>Home</button>
-                    <button onClick={() => setPage('mission')}>Mission</button>
-                    <button onClick={() => setPage('specials')}>Specials</button>
-                    <button onClick={() => setPage('contact')}>Contact</button>
-                </navbar>
-                <navbar className="hamburger">
-                    <button onClick={() => setPages('bar')}></button>
-                </navbar>
-            </nav>
-            
-            {/* hamburger menu is shown on small screen*/}
-            <button className={`hamburger ${isOpen ? 'open' : ''}`} onclick={toggleMenu}>
-                <span className="bar"></span>
-                <span className="bar"></span>
-                <span className="bar"></span>
+        <nav className="flex items-center justify-between w-full min-h-[60px] px-8 bg-[#2C1A14] border-b-4 border-[#C6A68E] box-border relative">
+            {/* Logo Section */}
+            <div className="w-[20%] mt-[1%] mb-[1%]">
+                <img src={logo} alt="Cafe Panna Logo" className="h-auto w-full rounded-full" />
+            </div>
+
+            {/* Desktop Links - Hidden on mobile, flex on large screens */}
+            <ul className="hidden lg:flex flex-row gap-6 list-none m-0 p-0">
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('home')}>Home</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('mission')}>Mission</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('specials')}>Specials</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('contact')}>Contact</button></li>
+            </ul>
+
+            {/* Hamburger Button - Hidden on desktop */}
+            <button className="lg:hidden flex flex-col gap-1 cursor-pointer" onClick={toggleMenu}>
+                <span className={`block w-6 h-0.5 bg-[#EDE5F2] transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`block w-6 h-0.5 bg-[#EDE5F2] ${isOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`block w-6 h-0.5 bg-[#EDE5F2] transition-all ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </button>
-        </div>
-    )
+
+            {/* Mobile Menu Dropdown */}
+            {isOpen && (
+                <div className="absolute top-full left-0 w-full bg-[#2C1A14] flex flex-col items-center py-4 lg:hidden z-50">
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('home'); setIsOpen(false); }}>Home</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('mission'); setIsOpen(false); }}>Mission</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('specials'); setIsOpen(false); }}>Specials</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('contact'); setIsOpen(false); }}>Contact</button>
+                </div>
+            )}
+        </nav>
+    );
 }
 
-export default NavBar
-
+export default NavBar;

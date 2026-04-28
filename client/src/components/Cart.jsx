@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import scoopImg from '../assets/images/Scoop.png' 
+import scoopImg from "../assets/images/Scoop.png";
+
 
 const menuItems = [
     {id: 1, flavor: "surprise-scoop", img: ScoopImg, alt:"Scoop of the Day", price: "14.00"}, 
@@ -51,30 +52,37 @@ function Cart({cart, setCart})
     };
 
     return (
-        <div>
-            <div className="cart-container" id="shopping-cart-selection">
-                <h2>Kep Scooping...</h2> 
-                <img src={scoopImg} alg="scoop image" /> 
-
-                {cart.length === 0 ? (<p>No scoops were choosen. keep scooping...</p>) : (
-                    <>
-                    <ul className="cart-list">
-                    {cart.map((item) => (
-                        <li key={item.id} className="cart-item">
-                            <img src={item.img} alt={item.alt} style={{width: "50px"}} />
-                            <span> {item.flavor} * {item.quantity} </span>
-                            <span> ${(item.price * item.quantity)}.toFixed(2) </span>
-                        </li>
-                    ))}
-                    </ul>  
-
-                        {/* Display the clearCart*/}
-                    <h3> Total: ${updateTotal.toDixed(2)} </h3>
-                    <button onClick={() => setCart([])}>Clear Cart</button>   
-                    </>
-                )}
-            </div> 
+        /* In Cart.jsx */
+<div id="shopping-cart-selection" className="bg-[#FAF6F0]/92 rounded-xl p-8 my-8 mx-auto w-[90%] md:w-[95%]">
+    <h2 className="text-[#6B2D39] mb-4">Keep Scooping...</h2>
+    
+    {cart.length === 0 ? (
+        <p className="text-[#3C2A21] text-[25px]">No scoops were chosen. Keep scooping...</p>
+    ) : (
+        <div className="flex flex-col gap-4">
+            <ul className="list-none p-0">
+                {cart.map((item) => (
+                    <li key={item.id} className="bg-white/70 border border-[#C6A68E] rounded-lg p-3 mb-3 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
+                        <div className="flex items-center gap-3">
+                            <img src={item.img} alt={item.alt} className="w-12 h-12 rounded-lg object-cover border border-[#C6A68E]" />
+                            <span className="font-bold text-[#3C2A21]">{item.flavor} x {item.quantity}</span>
+                        </div>
+                        <span className="font-mono text-[#6B2D39]">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
+                    </li>
+                ))}
+            </ul>
+            <div className="border-top border-[#C6A68E] pt-4 mt-4 flex justify-between items-center flex-wrap gap-4">
+                <h3 className="text-[#6B2D39] font-bold text-xl">Total: ${total.toFixed(2)}</h3>
+                <button 
+                    className="bg-[#C4956A] text-white px-5 py-2 rounded-lg hover:bg-[#6B2D39] transition-colors"
+                    onClick={() => setCart([])}
+                >
+                    Clear Cart
+                </button>
+            </div>
         </div>
+    )}
+</div>
     );
 }
 

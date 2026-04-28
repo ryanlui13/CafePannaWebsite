@@ -1,70 +1,52 @@
 import React from "react";
-import { useState } from "react";
-import Cart from './Cart.jsx'
 
-function checkoutForm({cart, onCancel, onConfirm})
-{
-    const[name, setName] = useState("");
-    const[email, setEmail] = useState("");
-    const[payment, setPayment] = useState("");
-
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const submitOrder = (e) => 
-    {
-        e.preventDefault();
-        setIsSubmitted(true);
-        setCart([]);
-        onConfirm();
-    };
-
+function CheckoutForm() {
     return (
-        <div>
-            <div id="checkout-container">
-                {!isSubmitted ? (
-                    <form id="checkout-form" onSubmit={submitOrder}>
-                    <div className="form-group">
-                        <input 
-                        placeholder="Name" 
-                        onChange={(event) => setName(event.target.value)}
-                        required
-                    /> 
-                    </div>
-
-                    <div className="form-group">
-                        <input 
-                        type="email"
-                        placeholder="Email" 
-                        onChange={(event) => setEmail(event.target.value)}
-                        required 
-                    /> 
-                    </div>
-
-                    <div className="form-group">
-                        <input 
-                        type="password"
-                        placeholder="CVV number here" 
-                        onChange={(event) => setPayment(event.target.value)}
-                        required
+        <div className="mx-auto my-10 w-[90%] md:w-[60%] lg:w-[40%] bg-[#FAF6F0]/95 p-8 rounded-2xl shadow-lg border border-[#C6A68E]">
+            <h2 className="text-[#6B2D39] text-3xl font-bold mb-6 border-b-2 border-[#6B5075] pb-2">
+                Checkout
+            </h2>
+            
+            <form className="flex flex-col gap-5">
+                {/* Name Field */}
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#6B2D39] font-semibold">Full Name</label>
+                    <input 
+                        type="text" 
+                        placeholder="Halli Meyer"
+                        className="p-3 rounded-lg border border-[#C6A68E] bg-white focus:outline-none focus:ring-2 focus:ring-[#6B5075] transition-all"
                     />
-                    </div>
+                </div>
 
-                    <div className="form-actions">
-                        <button type="submit">Confirm Order</button>
-                        <button type="button" onClick={onCancel}>Cancel</button>
-                    </div>
-                    <button type="submit">Place Order</button>
+                {/* Email Field */}
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#6B2D39] font-semibold">Email Address</label>
+                    <input 
+                        type="email" 
+                        placeholder="halli@cafepanna.com"
+                        className="p-3 rounded-lg border border-[#C6A68E] bg-white focus:outline-none focus:ring-2 focus:ring-[#6B5075] transition-all"
+                    />
+                </div>
 
-                </form>                    
-                ) : (
-                    <div id="confirmation">
-                        <h2>Thanks, {name} </h2>
-                        <p> Your order is being processed. An email will be sent to <strong>{email}</strong>. </p>
-                        <button onClick={() => setShowForm(false)}> Back to Menu!</button>
-                    </div>
-                )} 
-            </div>
+                {/* Pickup/Delivery Selection */}
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#6B2D39] font-semibold">Order Type</label>
+                    <select className="p-3 rounded-lg border border-[#C6A68E] bg-white focus:outline-none focus:ring-2 focus:ring-[#6B5075]">
+                        <option>In-Store Pickup</option>
+                        <option>Local Delivery</option>
+                    </select>
+                </div>
+
+                {/* Submit Button */}
+                <button 
+                    type="submit" 
+                    className="mt-4 bg-[#6B2D39] text-[#EDE5F2] font-bold py-3 rounded-xl hover:bg-[#6B5075] transition-colors shadow-md"
+                >
+                    Confirm Order
+                </button>
+            </form>
         </div>
     );
 }
 
-export default checkoutForm;
+export default CheckoutForm;
