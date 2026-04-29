@@ -1,48 +1,60 @@
 import { useState } from "react";
+import "./index.css";
+import "./App.css";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
-import Menu from "./pages/Menu"; // Removed .jsx for consistency
+import Menu from "./pages/Menu"; 
 import Specials from "./pages/Specials";
 import Contact from "./pages/Contact";
-import CheckoutForm from "./components/CheckoutForm"; // Fixed capitalization
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import CafePannaImage from "./assets/images/CafePannaImage.png";
 
 function App() {
    const [page, setPage] = useState('home');
-   const [showCheckout, setShowCheckout] = useState(false);
-   const [cart, setCart] = useState([]); // Crucial: App must hold the cart state
+   const [cart, setCart] = useState([]); 
 
-   // Logic-First: Add to Cart function lives here so it can be passed to Menu
    const addToCart = (item) => {
        setCart(prevCart => {
            const existing = prevCart.find(i => i.id === item.id);
            if (existing) {
-               return prevCart.map(i => i.id === item.id ? {...i, quantity: i.quantity + 1} : i);
+               return prevCart.map(i => i.id === item.id 
+                   ? {...i, quantity: i.quantity + 1} 
+                   : i);
            }
            return [...prevCart, {...item, quantity: 1}];
        });
    };
 
+    const removeFromCart = (item) => {
+        setCart(prev => prev.map(i => i.id === item.id ? { ...i, quantity: Math.max(0, i.quantity - 1) } : i).filter(i => i.quantity > 0));
+    };
+
+    const clearCart = () => setCart([]);
+
    return (
-    <div className="min-h-screen w-full bg-fixed bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: `url(${CafePannaImage})` }} > {/* Inline style for the specific local image */}
+    <div className="min-h-screen w-full bg-no-repeat bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${CafePannaImage})` }} >
+        
         <Navbar setPage={setPage} /> 
         
-        {/* Page Content */}
-        <main className="pb-20 bg-white/10 min-h-screen"> {/* Adds padding so footer doesn't overlap */}
-            {page === 'home' && <Home />}
-            {page === 'mission' && <Mission/>}
-            {page === 'menu' && <Menu addToCart={addToCart} />}
-            {page === 'specials' && <Specials/>}
-            {page === 'contact' && <Contact />}
+        <main className="pb-20 min-h-screen"> 
+            {/* Logic-First: Use toLowerCase() to prevent Navbar naming bugs */}
+            {page.toLowerCase() === 'home' && <Home />}
+            {page.toLowerCase() === 'mission' && <Mission/>}
+            {page.toLowerCase() === 'menu' && <Menu addToCart={addToCart} />}
+            {page.toLowerCase() === 'specials' && <Specials/>}
+            {page.toLowerCase() === 'contact' && <Contact />}
+            
+            {/* Always show the Cart at the bottom or via a specific state */}
+            <Cart cart={cart} />
         </main>
 
         <Footer/>
     </div>
    );
-} 
+}
 
 export default App;

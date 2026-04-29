@@ -1,11 +1,5 @@
 import React from "react";
-// Image imports remain the same
-import CookiesImg from "../assets/images/cookiesNpanna.png";
-import redFlagImg from "../assets/images/RedFlag.png";
-import cafeBiancoImg from "../assets/images/cafeBiancoStracciatella.png";
-import audDreamImg from "../assets/images/auddream.png";
-import maplePecanImg from "../assets/images/maplebutterpecan.png";
-import vanillaImg from "../assets/images/vanilla.png";
+// Imports stay the same...
 
 function Specials() {
     const specials = [
@@ -18,24 +12,15 @@ function Specials() {
     ];
 
     return (
-        <div className="w-full" id="hallis-specials">
-            {/* H2 Style: Maroon color, dashed border bottom */}
-            <h2 className="text-[#6B2D39] mx-[5%] w-[90%] border-b-4 border-dashed border-[#6B5075] pb-2.5 text-3xl font-bold mb-6">
+        <div className="w-[90%] mx-auto my-10 bg-[#FAF6F0]/90 p-8 rounded-2xl shadow-xl border border-[#C6A68E]">
+            <h2 className="text-[#6B2D39] text-3xl font-bold mb-8 text-center border-b-2 border-[#6B5075] pb-4">
                 Halli's Specials
             </h2>
-
-            {/* Featured Container: Horizontal scroll, Flex, Gap 15px */}
-            <div className="w-full mb-[50px] overflow-x-auto flex whitespace-nowrap gap-[15px] p-5 rounded-xl bg-[#FAF6F0]/50">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {specials.map(special => (
-                    <figure key={special.id} className="flex-shrink-0">
-                        <img 
-                            src={special.img} 
-                            alt={special.alt} 
-                            className="h-[300px] w-auto rounded-lg object-cover" 
-                        />
-                        <figcaption className="text-[#6B5075] mt-2 font-semibold text-center italic">
-                            {special.name}
-                        </figcaption>
+                    <figure key={special.id} className="flex flex-col items-center bg-white/50 p-4 rounded-xl border border-[#C6A68E] hover:scale-105 transition-transform">
+                        <img src={special.img} alt={special.alt} className="w-full h-48 object-cover rounded-lg mb-4 border-2 border-[#6B2D39]" />
+                        <figcaption className="text-[#2C1A14] font-bold text-center italic">{special.name}</figcaption>
                     </figure>
                 ))}
             </div>

@@ -15,10 +15,12 @@ function NavBar({ setPage }) {
 
             {/* Desktop Links - Hidden on mobile, flex on large screens */}
             <ul className="hidden lg:flex flex-row gap-6 list-none m-0 p-0">
-                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('home')}>Home</button></li>
-                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('mission')}>Mission</button></li>
-                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('specials')}>Specials</button></li>
-                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('contact')}>Contact</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('home')}>home</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('mission')}>mission</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('menu')}>menu</button></li>
+
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('specials')}>specials</button></li>
+                <li><button className="text-[#EDE5F2] font-mono font-bold hover:text-[#C4956A] p-1" onClick={() => setPage('contact')}>contact</button></li>
             </ul>
 
             {/* Hamburger Button - Hidden on desktop */}
@@ -31,10 +33,12 @@ function NavBar({ setPage }) {
             {/* Mobile Menu Dropdown */}
             {isOpen && (
                 <div className="absolute top-full left-0 w-full bg-[#2C1A14] flex flex-col items-center py-4 lg:hidden z-50">
-                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('home'); setIsOpen(false); }}>Home</button>
-                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('mission'); setIsOpen(false); }}>Mission</button>
-                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('specials'); setIsOpen(false); }}>Specials</button>
-                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('contact'); setIsOpen(false); }}>Contact</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('home'); setIsOpen(false); }}>home</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('mission'); setIsOpen(false); }}>mission</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('menu'); setIsOpen(false); }}>menu</button>
+
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('specials'); setIsOpen(false); }}>specials</button>
+                    <button className="text-[#EDE5F2] py-2" onClick={() => { setPage('contact'); setIsOpen(false); }}>contact</button>
                 </div>
             )}
         </nav>

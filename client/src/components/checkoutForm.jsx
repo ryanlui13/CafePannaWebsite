@@ -32,6 +32,17 @@ function CheckoutForm({ onCancel }) {
                     />
                 </div>
 
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#6B2D39] font-semibold">Credit Card Number</label>
+                    <input 
+                        type="text" 
+                        placeholder="1234 5678 9101 1121"
+                        className="p-3 rounded-lg border border-[#C6A68E] bg-white focus:ring-2 focus:ring-[#6B5075] outline-none"
+                        maxLength="16"
+                        required
+                    />
+                </div>
+                
                 <div className="flex flex-col gap-5">
                     <button 
                         type="submit" 

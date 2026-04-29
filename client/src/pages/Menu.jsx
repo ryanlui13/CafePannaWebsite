@@ -1,4 +1,5 @@
 import React, { useState } from "react"; // Added useState
+import Cart from "../components/Cart.jsx";
 import CheckoutForm from "../components/CheckoutForm";
 import audDreamImg from "../assets/images/auddream.png"; 
 import CookiesImg from "../assets/images/cookiesNpanna.png";
