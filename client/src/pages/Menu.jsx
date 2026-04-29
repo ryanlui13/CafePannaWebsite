@@ -1,5 +1,5 @@
-import React from "react";
-// Import paths adjusted to jump from 'pages' to 'assets'
+import React, { useState } from "react"; // Added useState
+import CheckoutForm from "../components/CheckoutForm";
 import audDreamImg from "../assets/images/auddream.png"; 
 import CookiesImg from "../assets/images/cookiesNpanna.png";
 import redFlagImg from "../assets/images/RedFlag.png";
@@ -7,9 +7,12 @@ import cafeBiancoImg from "../assets/images/cafeBiancoStracciatella.png";
 import maplePecanImg from "../assets/images/maplebutterpecan.png";
 import vanillaImg from "../assets/images/vanilla.png";
 import ScoopImg from "../assets/images/CafePannaBackgroundImage.jpg";
-import chocoloateImg from "../assets/images/chocoloate.png";
+import chocoloateImg from "../assets/images/chocolate.png";
 
 function Menu({ addToCart }) {
+    // Logic-First: Define the state to switch between menu and checkout
+    const [view, setView] = useState("products");
+
     const featuredPints = [
         { id: 1, flavor: "scoop of the day", img: ScoopImg, alt: "Scoop of the Day", price: 14.00 },
         { id: 2, flavor: "aud's Dream", img: audDreamImg, alt: "Aud's dream", price: 14.00 },
@@ -24,9 +27,22 @@ function Menu({ addToCart }) {
         { id: 8, flavor: "chocolate", img: chocoloateImg, alt: "Chocolate", price: 5.00 },
     ];
 
+    if (view === "checkout") {
+        return (
+            <div className="p-8">
+                <button 
+                    onClick={() => setView("products")}
+                    className="mb-6 text-[#6B2D39] font-bold hover:underline flex items-center gap-2">
+                    ← Back to Scoops
+                </button>
+                <CheckoutForm onCancel={() => setView("products")} />
+            </div>
+        );
+    }
+
     return (
         <div className="w-[90%] mx-auto my-8 space-y-8">
-            {/* Table Container - Replaces .menu-table */}
+            {/* Featured Pints Table */}
             <div className="bg-[#FAF6F0]/90 rounded-xl p-8 shadow-sm">
                 <h3 className="text-[#6B2D39] text-2xl font-bold mb-6 text-center">Featured Pints</h3>
                 <table className="w-full border-collapse border-2 border-[#2C1A14]">
@@ -60,7 +76,7 @@ function Menu({ addToCart }) {
                 </table>
             </div>
 
-            {/* Classic Menu - Same Tailwind logic */}
+            {/* Classic Menu Table */}
             <div className="bg-[#FAF6F0]/90 rounded-xl p-8 shadow-sm">
                 <h3 className="text-[#6B2D39] text-2xl font-bold mb-6 text-center">Classic Flavor Menu</h3>
                 <table className="w-full border-collapse border-2 border-[#2C1A14]">
@@ -92,6 +108,16 @@ function Menu({ addToCart }) {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* The Final Button to trigger Checkout view */}
+            <div className="flex justify-center pb-10">
+                <button 
+                    onClick={() => setView("checkout")}
+                    className="bg-[#6B2D39] text-[#EDE5F2] px-10 py-4 rounded-2xl font-bold text-xl shadow-xl hover:scale-105 transition-transform"
+                >
+                    Proceed to Checkout
+                </button>
             </div>
         </div>
     );

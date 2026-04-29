@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import CheckoutForm from "./components/CheckoutForm"; // Fixed capitalization
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
+import CafePannaImage from "./assets/images/CafePannaImage.png";
 
 function App() {
    const [page, setPage] = useState('home');
@@ -38,15 +39,6 @@ function App() {
             {page === 'specials' && <Specials/>}
             {page === 'contact' && <Contact />}
         </main>
-
-        {/* Cart/Checkout Logic */}
-        <div className="fixed bottom-0 w-full z-50">
-            {!showCheckout ? (
-                <Cart cart={cart} setCart={setCart} onCheckout={() => setShowCheckout(true)} />
-            ) : (
-                <CheckoutForm onCancel={() => setShowCheckout(false)} />
-            )}
-        </div>
 
         <Footer/>
     </div>

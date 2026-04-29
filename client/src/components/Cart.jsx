@@ -1,10 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import scoopImg from "../assets/images/Scoop.png";
+import audDreamImg from "../assets/images/auddream.png";
+import CookiesImg from "../assets/images/cookiesNpanna.png";
+import redFlagImg from "../assets/images/RedFlag.png";
+import cafeBiancoImg from "../assets/images/cafeBiancoStracciatella.png";
+import maplePecanImg from "../assets/images/maplebutterpecan.png";
+import vanillaImg from "../assets/images/vanilla.png";
+import chocoloateImg from "../assets/images/chocolate.png";
 
 
 const menuItems = [
-    {id: 1, flavor: "surprise-scoop", img: ScoopImg, alt:"Scoop of the Day", price: "14.00"}, 
+    {id: 1, flavor: "surprise-scoop", img: scoopImg, alt:"Scoop of the Day", price: "14.00"}, 
     {id: 2, flavor: "aud's Dream", img: audDreamImg, alt:"Aud's dream", price: "14.00"},
     {id: 3, flavor: "Cookies 'n Panna", img: CookiesImg, alt:"Cookies and Panna", price: "7.00"},
     {id: 4, flavor: "Red Swirl", img: redFlagImg, alt:"Red Swirl", price: "5.00"},
