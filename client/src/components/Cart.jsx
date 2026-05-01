@@ -1,6 +1,6 @@
 import React from "react";
 
-function Cart({ cart }) {
+function Cart({ cart, clearCart, setPage }) {
     // Calculate total dynamically based on the current cart items
     const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
 

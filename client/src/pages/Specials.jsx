@@ -1,5 +1,12 @@
 import React from "react";
 // Imports stay the same...
+import CookiesImg from "../assets/images/cookiesNpanna.png";
+import maplePecanImg from "../assets/images/maplebutterpecan.png";
+import cafeBiancoImg from "../assets/images/cafeBiancoStracciatella.png";
+import redFlagImg from "../assets/images/RedFlag.png";
+import audDreamImg from "../assets/images/auddream.png";
+import vanillaImg from "../assets/images/vanilla.png";
+
 
 function Specials() {
     const specials = [

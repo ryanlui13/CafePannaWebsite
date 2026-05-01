@@ -1,10 +1,11 @@
 import React from "react";
 
-function CheckoutForm({ onCancel }) {
+function CheckoutForm({ onCancel, setPage }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert("Order Confirmed! See you at Cafe Panna.");
         // Logic to clear cart would go here
+        setPage('hone');
     };
 
     return (
@@ -54,7 +55,7 @@ function CheckoutForm({ onCancel }) {
                     {/* Back Button to return to the Menu */}
                     <button 
                         type="button"
-                        onClick={onCancel}
+                        onClick={() => setPage('menu')}
                         className="text-[#6B5075] font-semibold hover:underline"
                     >
                         Back to Menu

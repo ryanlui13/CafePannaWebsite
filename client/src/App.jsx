@@ -54,7 +54,12 @@ function App() {
             {page.toLowerCase() === 'specials' && <Specials/>}
             {page.toLowerCase() === 'contact' && <Contact />}
 
-            {page.toLowerCase() === 'checkout' && <CheckoutForm onCancel={() => setPage('menu')} />}
+            {page.toLowerCase() === 'checkout' && (
+                <CheckoutForm 
+                setPage={setPage}
+                onCancel={() => setPage('menu')} 
+                />
+            )}
             
         </main>
 
