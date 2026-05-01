@@ -17,7 +17,7 @@ function Cart({ cart }) {
                             <li key={item.id} className="bg-white/70 border border-[#C6A68E] rounded-lg p-3 mb-3 flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <img src={item.img} alt={item.alt} className="w-12 h-12 rounded-lg object-cover border border-[#C6A68E]" />
-                                    <span className="font-bold text-[#3C2A21]">{item.flavor} <span className="text-[#6B5075]">x{item.quantity}</span></span>
+                                    <span className="font-bold text-[#3C2A21]">{item.flavor} <span className="text-[#6B5075]">x {item.quantity}</span></span>
                                 </div>
                                 <span className="font-mono font-bold text-[#6B2D39]">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
                             </li>
@@ -28,7 +28,10 @@ function Cart({ cart }) {
                         <button onClick={clearCart} className="text-red-600 underline text-sm">
                             Clear All Scoops
                         </button>
-                        <button className="bg-[#6B2D39] text-white px-6 py-2 rounded-xl hover:bg-[#6B5075] transition-colors font-bold">
+                        <button 
+                            onClick={() => setPage('checkout')} // Add this trigger
+                            className="bg-[#6B2D39] text-white px-6 py-2 rounded-xl font-bold"
+                        >
                             Checkout
                         </button>
                     </div>

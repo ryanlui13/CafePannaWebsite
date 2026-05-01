@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import "./App.css";
 
@@ -8,6 +8,7 @@ import Mission from "./pages/Mission";
 import Menu from "./pages/Menu"; 
 import Specials from "./pages/Specials";
 import Contact from "./pages/Contact";
+import CheckoutForm from "./components/CheckoutForm";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import CafePannaImage from "./assets/images/CafePannaImage.png";
@@ -44,12 +45,17 @@ function App() {
             {/* Logic-First: Use toLowerCase() to prevent Navbar naming bugs */}
             {page.toLowerCase() === 'home' && <Home />}
             {page.toLowerCase() === 'mission' && <Mission/>}
-            {page.toLowerCase() === 'menu' && <Menu addToCart={addToCart} />}
+            {page.toLowerCase() === 'menu' && (
+            <>
+                <Menu addToCart={addToCart} />
+                <Cart cart={cart} clearCart={clearCart} setPage={setPage} />
+            </>
+            )}
             {page.toLowerCase() === 'specials' && <Specials/>}
             {page.toLowerCase() === 'contact' && <Contact />}
+
+            {page.toLowerCase() === 'checkout' && <CheckoutForm onCancel={() => setPage('menu')} />}
             
-            {/* Always show the Cart at the bottom or via a specific state */}
-            <Cart cart={cart} />
         </main>
 
         <Footer/>
