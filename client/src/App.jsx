@@ -8,7 +8,6 @@ import Mission from "./pages/Mission";
 import Menu from "./pages/Menu"; 
 import Specials from "./pages/Specials";
 import Contact from "./pages/Contact";
-import CheckoutForm from "./components/CheckoutForm";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import CafePannaImage from "./assets/images/CafePannaImage.png";
@@ -17,11 +16,13 @@ function App() {
    const [page, setPage] = useState('home');
    const [cart, setCart] = useState([]); 
 
-   const addToCart = (item) => {
+   // 🍦 Handles both standard frontend IDs and MongoDB '_id' strings cleanly
+   const addToCart = (item) => {   
        setCart(prevCart => {
-           const existing = prevCart.find(i => i.id === item.id);
+            const itemId = item._id || item.id;
+            const existing = prevCart.find(i => (i._id || i.id) === itemId);
            if (existing) {
-               return prevCart.map(i => i.id === item.id 
+               return prevCart.map(i => (i._id || i.id) === itemId 
                    ? {...i, quantity: i.quantity + 1} 
                    : i);
            }
@@ -30,7 +31,10 @@ function App() {
    };
 
     const removeFromCart = (item) => {
-        setCart(prev => prev.map(i => i.id === item.id ? { ...i, quantity: Math.max(0, i.quantity - 1) } : i).filter(i => i.quantity > 0));
+        const itemId = item._id || item.id;
+        setCart(prev => prev.map(i => (i._id || i.id) === itemId 
+            ? { ...i, quantity: Math.max(0, i.quantity - 1) } 
+            : i).filter(i => i.quantity > 0));
     };
 
     const clearCart = () => setCart([]);
@@ -42,28 +46,30 @@ function App() {
         <Navbar setPage={setPage} /> 
         
         <main className="pb-20 min-h-screen"> 
-            {/* Logic-First: Use toLowerCase() to prevent Navbar naming bugs */}
+            {/* Logic-First Page Routing Routing Section */}
             {page.toLowerCase() === 'home' && <Home />}
             {page.toLowerCase() === 'mission' && <Mission/>}
+            
+            {/* Fixed: Separated Menu and Checkout into distinct cleanly isolated pages */}
             {page.toLowerCase() === 'menu' && (
-            <>
-                <Menu addToCart={addToCart} />
-                <Cart cart={cart} clearCart={clearCart} setPage={setPage} />
-            </>
+                <Menu addToCart={addToCart} setPage={setPage} />
             )}
-            {page.toLowerCase() === 'specials' && <Specials/>}
-            {page.toLowerCase() === 'contact' && <Contact />}
-
+            
             {page.toLowerCase() === 'checkout' && (
-                <CheckoutForm 
-                setPage={setPage}
-                onCancel={() => setPage('menu')} 
+                <Cart 
+                    cart={cart} 
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    clearCart={clearCart} 
+                    setPage={setPage} 
                 />
             )}
             
+            {page.toLowerCase() === 'specials' && <Specials/>}
+            {page.toLowerCase() === 'contact' && <Contact/>}
         </main>
 
-        <Footer/>
+        <Footer />
     </div>
    );
 }

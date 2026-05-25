@@ -1,3 +1,5 @@
+import React from "react";
+
 function ReviewCard({form_inputs, onConfirm, onBack}) {
     return (
         <div className="bg-[#FAF6F0]/95 p-6 rounded-xl border border-[#C6A68E] shadow-lg">
@@ -18,3 +20,5 @@ function ReviewCard({form_inputs, onConfirm, onBack}) {
         </div>
     );
 }
+
+export default ReviewCard;

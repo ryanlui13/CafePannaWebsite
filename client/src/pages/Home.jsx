@@ -1,6 +1,7 @@
 import React from "react";
 import CafePannaImage from "../assets/images/CafePannaImage.png";
 
+//connection string: mongodb+srv://ryanlui:theboysS5@cluster0.wue8fxx.mongodb.net/?appName=Cluster0
 function Home() {
     return (
         <div className="min-h-screen w-full overflow-x-hidden">
