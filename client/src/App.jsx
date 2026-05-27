@@ -17,7 +17,8 @@ function App() {
    const [cart, setCart] = useState([]); 
 
    // 🍦 Handles both standard frontend IDs and MongoDB '_id' strings cleanly
-   const addToCart = (item) => {   
+   // 🍦 Handles both standard frontend IDs and MongoDB '_id' strings cleanly
+   const addToCart = (item) => {
        setCart(prevCart => {
             const itemId = item._id || item.id;
             const existing = prevCart.find(i => (i._id || i.id) === itemId);
