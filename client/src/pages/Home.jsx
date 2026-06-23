@@ -1,5 +1,6 @@
 import React from "react";
 import CafePannaImage from "../assets/images/CafePannaImage.png";
+import InnerCafe from "../assets/images/innercafe.jpg"
 
 //connection string: mongodb+srv://ryanlui:theboysS5@cluster0.wue8fxx.mongodb.net/?appName=Cluster0
 function Home() {
@@ -13,7 +14,7 @@ function Home() {
                 {/* Hero Image Wrapper */}
                 <div className="w-[90%] md:w-[60%] lg:w-[50%] overflow-hidden rounded-2xl shadow-2xl border-4 border-[#C6A68E]">
                     <img 
-                        src={CafePannaImage} 
+                        src={InnerCafe} 
                         alt="Cafe Panna Shop Front" 
                         className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                     />

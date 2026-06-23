@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Cart({ cart, addToCart, removeFromCart, clearCart, setPage }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [cardNum, setCardNum] = useState('');
+    const [promoCode, setPromoCode] = useState('');
     
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const tax = subtotal * 0.0875; 
@@ -21,7 +21,8 @@ function Cart({ cart, addToCart, removeFromCart, clearCart, setPage }) {
         const finalOrder = {
             customerName: name,
             email: email,
-            creditCard: cardNum,
+            promoCode: promoCode || null,
+
             itemsOrdered: cart.map(item => ({
                 flavor: item.flavor || item.name,
                 quantity: item.quantity,
@@ -117,8 +118,14 @@ function Cart({ cart, addToCart, removeFromCart, clearCart, setPage }) {
                                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="johnny@panna.com" className="w-full p-3 border rounded-xl focus:outline-none focus:border-[#6B2D39]" />
                             </div>
                             <div>
-                                <label className="text-xs font-bold text-gray-500 uppercase block mb-1">Credit Card Details</label>
-                                <input type="password" value={cardNum} onChange={(e) => setCardNum(e.target.value)} required placeholder="4111 2222 3333 4444" className="w-full p-3 border rounded-xl focus:outline-none focus:border-[#6B2D39]" />
+                                <label>Promo / Gift Card Code (optional)</label>
+                                <input 
+                                    type="text" 
+                                    value={promoCode} 
+                                    onChange={(e) => setPromoCode(e.target.value)}
+                                    placeholder="PANNA2025"
+                                    className="w-full p-3 border rounded-xl focus:outline-none focus:border-[#6B2D39]"
+                                />
                             </div>
                             
                             <button type="submit" className="w-full mt-4 bg-[#6B2D39] text-white py-4 rounded-xl font-black tracking-wider uppercase shadow-lg hover:bg-[#52222B] transition-colors transform active:scale-[0.98]">
@@ -130,6 +137,9 @@ function Cart({ cart, addToCart, removeFromCart, clearCart, setPage }) {
                                     ← Keep Shopping (Back to Menu)
                                 </button>
                             </div>
+                            <p className="text-xs text-gray-400 text-center mt-2">
+                                Payments powered by Stripe in production
+                            </p>
                         </form>
                     </div>
                 </div>

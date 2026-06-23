@@ -66,7 +66,7 @@ function App() {
                 />
             )}
             
-            {page.toLowerCase() === 'specials' && <Specials/>}
+            {page.toLowerCase() === 'specials' && <Specials addToCart={addToCart} setPage={setPage}/>}
             {page.toLowerCase() === 'contact' && <Contact/>}
         </main>
 
