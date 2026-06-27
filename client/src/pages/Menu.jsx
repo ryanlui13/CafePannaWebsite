@@ -23,7 +23,7 @@ const imageMap = {
     "chocolate": chocoloateImg
 };
 
-function Menu({ addToCart, setPage }) {
+function Menu({ addToCart, setPage, cart }) {
     const [featuredPints, setFeaturedPints] = useState([]);
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true); 
@@ -102,7 +102,7 @@ function Menu({ addToCart, setPage }) {
                 <div>
                     <p className="font-bold uppercase tracking-wide text-xs text-[#C6A68E]">Active Basket</p>
                     {/* Loops through cart data to calculate item count safely */}
-                    <p className="text-sm font-medium">Menu Items Selected: {featuredPints.reduce((acc, item) => acc + (item.quantity || 0), 0)} pints</p>
+                    <p className="text-sm font-medium">Menu Items Selected: {cart.reduce((acc, item) => acc + item.quantity, 0)} pints</p>
                 </div>
             </div>
             <button 

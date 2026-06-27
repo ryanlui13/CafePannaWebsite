@@ -53,7 +53,7 @@ function App() {
             
             {/* Fixed: Separated Menu and Checkout into distinct cleanly isolated pages */}
             {page.toLowerCase() === 'menu' && (
-                <Menu addToCart={addToCart} setPage={setPage} />
+                <Menu addToCart={addToCart} setPage={setPage} cart={cart}/>
             )}
             
             {page.toLowerCase() === 'checkout' && (
