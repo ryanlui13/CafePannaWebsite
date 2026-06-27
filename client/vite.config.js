@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [,
+  plugins: [
     react(),
     tailwindcss(),
   ],
-  base: '/CafePannaWebsite/',
+  base: '/', // This forces Vercel to look at the root domain
 })
