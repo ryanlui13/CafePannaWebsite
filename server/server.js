@@ -88,18 +88,6 @@ app.post('/api/order', async (req, res) => {
     }
 });
 
-// 🚀 PRODUCTION STATIC ASSET HOSTING FOR RENDER ENGINE
-const path = require('path');
-if (process.env.NODE_ENV === 'production') {
-    // Serves the compiled dist folder from your client files
-    app.use(express.static(path.join(__dirname, '../client/dist')));
-    
-    // Directs any wild web paths right to your index.html asset loop
-    app.get('*splat', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-    });
-}
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
