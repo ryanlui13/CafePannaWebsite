@@ -32,8 +32,8 @@ function Menu({ addToCart, setPage, cart }) {
     useEffect(() => {
         // 🍦 Try to fetch from the server first
         Promise.all([
-            fetch('http://localhost:5000/api/classic_menu').then(res => res.json()),
-            fetch('http://localhost:5000/api/featured_pints').then(res => res.json())
+            fetch('https://cafepannawebsite1.onrender.com/api/classic_menu').then(res => res.json()),
+            fetch('https://cafepannawebsite1.onrender.com/api/featured_pints').then(res => res.json())
         ])
         .then(([classicData, specialsData]) => {
             // If the server responds but collections are empty, fall back safely

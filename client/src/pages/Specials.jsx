@@ -38,7 +38,7 @@ function Specials({ addToCart }) {
     const [slide, setSlide] = useState(0);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/featured_pints')
+        fetch('https://cafepannawebsite1.onrender.com/api/featured_pints')
             .then(res => res.json())
             .then(data => {
                 setSpecials(data);

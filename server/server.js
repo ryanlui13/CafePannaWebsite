@@ -95,7 +95,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
     
     // Directs any wild web paths right to your index.html asset loop
-    app.get('*', (req, res) => {
+    app.get('*splat', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
     });
 }
